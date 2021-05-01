@@ -1,7 +1,10 @@
 package diet;
 
 import java.util.Collection;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Represents the main class in the
  * take-away system.
@@ -10,6 +13,8 @@ import java.util.Collection;
  *
  */
 public class Takeaway {
+	
+	private List<Restaurant> restaurants = new ArrayList<>();
 
 	/**
 	 * Adds a new restaurant to the take-away system
@@ -17,6 +22,7 @@ public class Takeaway {
 	 * @param r the restaurant to be added
 	 */
 	public void addRestaurant(Restaurant r) {
+		restaurants.add(r);
 	}
 	
 	/**
@@ -25,7 +31,9 @@ public class Takeaway {
 	 * @return collection of added restaurants
 	 */
 	public Collection<String> restaurants() {
-		return null;
+		List<String> r = new ArrayList<>();
+		restaurants.forEach(res -> r.add(res.getName()));
+		return r;
 	}
 	
 	/**

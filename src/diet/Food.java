@@ -16,6 +16,7 @@ public class Food {
 	private TreeMap<String, Items> rawIngredients = new TreeMap<>();
 	private TreeMap<String, Items> product = new TreeMap<>();
 	private TreeMap<String, Recipe> recipes = new TreeMap<>();
+	private TreeMap<String, Menu> menus = new TreeMap<>();
 
 	/**
 	 * Define a new raw material.
@@ -117,7 +118,6 @@ public class Food {
 	 * @return the newly created Recipe object
 	 */
 	public Recipe createRecipe(String name) {
-		List<Items> items = new ArrayList<>();		
 		Recipe recipe = new Recipe(name, rawIngredients);
 		recipes.put(name, recipe);
 		
@@ -156,7 +156,12 @@ public class Food {
 	 */
 	public Menu createMenu(String name) {
 		Menu menu = new Menu(name, recipes, product);
+		menus.put(name, menu);
 		return menu;
+	}
+	
+	public Menu getMenu(String name) {
+		return menus.get(name);
 	}
 	
 }

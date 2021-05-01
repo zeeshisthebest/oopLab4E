@@ -1,4 +1,10 @@
 package diet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 import diet.Order.OrderStatus;
 
 /**
@@ -6,6 +12,10 @@ import diet.Order.OrderStatus;
  *
  */
 public class Restaurant {
+	private String name;
+	private Food food;
+	private List<String> timings = new ArrayList<>();
+	private Map<String, Menu> menus = new TreeMap<>();
 	
 	/**
 	 * Constructor for a new restaurant.
@@ -18,34 +28,23 @@ public class Restaurant {
 	 */
 	public Restaurant(String name, Food food) {
 		// TODO: implement constructor
+		this.name = name;
+		this.food = food;
 	}
 	
-	/**
-	 * gets the name of the restaurant
-	 * 
-	 * @return name
-	 */
 	public String getName() {
-		return null;
+		return name;
 	}
 	
-	/**
-	 * Define opening hours.
-	 * 
-	 * The opening hours are considered in pairs.
-	 * Each pair has the initial time and the final time
-	 * of opening intervals.
-	 * 
-	 * for a restaurant opened from 8:15 until 14:00 and from 19:00 until 00:00, 
-	 * is thoud be called as {@code setHours("08:15", "14:00", "19:00", "00:00")}.
-	 * 
-	 * @param hm a list of opening hours
-	 */
 	public void setHours(String ... hm) {
+		timings.add(hm[0]);
+		timings.add(hm[1]);
+		timings.add(hm[2]);
+		timings.add(hm[3]);
 	}
 	
 	public Menu getMenu(String name) {
-		return null;
+		return menus.get(name);
 	}
 	
 	/**
@@ -56,7 +55,9 @@ public class Restaurant {
 	 * @return the newly created menu
 	 */
 	public Menu createMenu(String name) {
-		return null;
+		Menu m = food.getMenu(name);
+		menus.put(name, m);
+		return m;
 	}
 
 	/**
@@ -80,5 +81,24 @@ public class Restaurant {
 	 */
 	public String ordersWithStatus(OrderStatus status) {
 		return null;
+	}
+	
+	public String toString() {
+		return name + getTiming() + getMenus();
+	}
+	
+	String getTiming() {
+		return ": Opens from " + timings.get(0) +
+				" to " + timings.get(1) +
+				" and from " + timings.get(2) +
+				" to " +  timings.get(3) + ". ";
+	}
+	
+	String getMenus() {
+		String str = "\n";
+		for(Map.Entry<String, Menu> m : menus.entrySet()) {
+			str += "Menu " + m.getKey() + " " + m.getValue() + "\n";
+		}
+		return str;
 	}
 }

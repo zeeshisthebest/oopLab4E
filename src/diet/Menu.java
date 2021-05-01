@@ -10,6 +10,11 @@ import java.util.TreeMap;
  *
  */
 public class Menu implements NutritionalElement {
+	@Override
+	public String toString() {
+		return "Menu {recipe=" + recipe + ", quantityR=" + quantityR+"} Product = " + product;
+	}
+
 	private String name;
 	@SuppressWarnings("unused")
 	private String recipe;
