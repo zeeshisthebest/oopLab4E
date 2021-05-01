@@ -4,14 +4,29 @@ package diet;
  * Represent a take-away system user
  *  
  */
-public class User {
+public class User implements Comparable<User>{
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String phone;
+	
+	/**
+	 * 
+	 * @param firstName user's first name
+	 * @param lastName user's last name
+	 * @return null
+	 */
+	public User (String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 		
 	/**
 	 * get user's last name
 	 * @return last name
 	 */
 	public String getLastName() {
-		return null;
+		return lastName;
 	}
 	
 	/**
@@ -19,7 +34,7 @@ public class User {
 	 * @return first name
 	 */
 	public String getFirstName() {
-		return null;
+		return firstName;
 	}
 	
 	/**
@@ -27,7 +42,7 @@ public class User {
 	 * @return email
 	 */
 	public String getEmail() {
-		return null;
+		return email;
 	}
 	
 	/**
@@ -35,7 +50,7 @@ public class User {
 	 * @return  phone number
 	 */
 	public String getPhone() {
-		return null;
+		return phone;
 	}
 	
 	/**
@@ -43,6 +58,7 @@ public class User {
 	 * @param email new email
 	 */
 	public void SetEmail(String email) {
+		this.email = email;
 	}
 	
 	/**
@@ -50,6 +66,20 @@ public class User {
 	 * @param phone new phone number
 	 */
 	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+
+	@Override
+	public int compareTo(User o) {
+		// TODO Auto-generated method stub
+		int result = this.firstName.compareTo(o.firstName);
+		result = result == 0 ? this.lastName.compareTo(o.lastName) : result;
+		return result;
+	}
+	
+	public String toString() {
+		return firstName + " " + lastName + " " + email + " " + phone;
+	}
+	
 	
 }

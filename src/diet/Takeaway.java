@@ -1,6 +1,7 @@
 package diet;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.List;
 public class Takeaway {
 	
 	private List<Restaurant> restaurants = new ArrayList<>();
+	private List<User> users = new ArrayList<>();
 
 	/**
 	 * Adds a new restaurant to the take-away system
@@ -46,7 +48,12 @@ public class Takeaway {
 	 * @return
 	 */
 	public User registerUser(String firstName, String lastName, String email, String phoneNumber) {
-		return null;
+		User user = new User(firstName, lastName);
+		user.SetEmail(email);
+		user.setPhone(phoneNumber);
+		users.add(user);
+		users.sort(null);
+		return user;
 	}
 	
 	/**
@@ -55,7 +62,7 @@ public class Takeaway {
 	 * @return the collection of users
 	 */
 	public Collection<User> users(){
-		return null;
+		return users;
 	}
 	
 	/**
@@ -68,7 +75,7 @@ public class Takeaway {
 	 * @param restaurantName	restaurant name
 	 * @param h					delivery time hour
 	 * @param m					delivery time minutes
-	 * @return
+	 * @return newly created order
 	 */
 	public Order createOrder(User user, String restaurantName, int h, int m) {
 		return null;
