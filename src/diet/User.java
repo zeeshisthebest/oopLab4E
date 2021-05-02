@@ -78,7 +78,7 @@ public class User implements Comparable<User>{
 	}
 	
 	public String toString() {
-		return firstName + " " + lastName + " " + email + " " + phone;
+		return firstName + " " + lastName;
 	}
 	
 	

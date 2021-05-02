@@ -40,12 +40,14 @@ public class TestApp {
         
         ta.users().forEach(user -> System.out.println(user));
         
-        Order order = new Order(mz,  10, 12);
+        Order order = new Order(mz, "r2", 10, 02);
         
         System.out.println(order);
         
         order.setPaymentMethod(PaymentMethod.CARD);
         order.setStatus(OrderStatus.DELIVERED);
+        order.addMenus("menu1", 1);
+        order.addMenus("menu2", 3);
         System.out.println(order);
 	}
 

@@ -2,22 +2,33 @@ package diet;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Represents an order in the take-away system
  */
 public class Order {
 	private User user;
+	private String restaurant;
 	private int h;
 	private int m;
 	private OrderStatus orderStatus;
 	private PaymentMethod paymentMethod;
-	private Map<String, Integer> menus = new HashMap<>();
+	private Map<String, Integer> menus = new TreeMap<>();
 	
-	public Order(User user,int h, int m) {
+
+	/**
+	 * @param user user object
+	 * @param r name of the restaurant
+	 * @param h hour
+	 * @param m minute
+	 * @return none
+	 */
+	public Order(User user, String r, int h, int m) {
 		this.user = user;
 		this.h = h;
 		this.m = m;
+		this.restaurant = r;
 	}
  
 	/**
@@ -102,7 +113,16 @@ public class Order {
 	 */
 	@Override
 	public String toString() {
-		return user + " " + getStatus() + " " + getPaymentMethod();
+		String str = "";
+		str += "\"" + restaurant + ", " + user + " : Delivery(" + String.format("%02d:%02d):", h, m); 
+		
+		for(Map.Entry<String, Integer> m: menus.entrySet()) {
+				str += "\n\t" + m.getKey() + "->" + m.getValue();
+		}
+		
+		str +="\n\"";
+		return str;
 	}
+	
 	
 }
