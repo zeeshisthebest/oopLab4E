@@ -1,9 +1,24 @@
 package diet;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Represents an order in the take-away system
  */
 public class Order {
+	private User user;
+	private int h;
+	private int m;
+	private OrderStatus orderStatus;
+	private PaymentMethod paymentMethod;
+	private Map<String, Integer> menus = new HashMap<>();
+	
+	public Order(User user,int h, int m) {
+		this.user = user;
+		this.h = h;
+		this.m = m;
+	}
  
 	/**
 	 * Defines the possible order status
@@ -32,7 +47,9 @@ public class Order {
 	 * @param method payment method
 	 */
 	public void setPaymentMethod(PaymentMethod method) {
+		paymentMethod = method;
 	}
+	
 	
 	/**
 	 * get payment method
@@ -40,7 +57,7 @@ public class Order {
 	 * @return payment method
 	 */
 	public PaymentMethod getPaymentMethod() {
-		return null;
+		return paymentMethod != null ? paymentMethod : PaymentMethod.CASH;
 	}
 	
 	/**
@@ -48,14 +65,16 @@ public class Order {
 	 * @param newStatus order status
 	 */
 	public void setStatus(OrderStatus newStatus) {
+		orderStatus = newStatus;
 	}
+	
 	
 	/**
 	 * get current order status
 	 * @return order status
 	 */
 	public OrderStatus getStatus(){
-		return null;
+		return orderStatus != null ? orderStatus : OrderStatus.ORDERED;
 	}
 	
 	/**
@@ -68,7 +87,7 @@ public class Order {
 	 * @return this order to enable method chaining
 	 */
 	public Order addMenus(String menu, int quantity) {
-
+		menus.put(menu, quantity);
 		return this;
 	}
 	
@@ -83,7 +102,7 @@ public class Order {
 	 */
 	@Override
 	public String toString() {
-		return null;
+		return user + " " + getStatus() + " " + getPaymentMethod();
 	}
 	
 }

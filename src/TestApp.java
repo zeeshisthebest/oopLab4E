@@ -1,4 +1,6 @@
 import diet.*;
+import diet.Order.OrderStatus;
+import diet.Order.PaymentMethod;
 
 public class TestApp {
 
@@ -32,13 +34,19 @@ public class TestApp {
         ta.addRestaurant(r2);
         System.out.println(ta.restaurants().toString());
         
-        ta.registerUser("MUhammad", "Zeeshan", "muhammadzeesha1670@gmail.com", "+92 336 2322 679");
-        ta.registerUser("MUhammad", "Qamar", "muhammadzeesha1670@gmail.com", "+92 336 2322 679");
-        ta.registerUser("MUhammad", "Taha", "muhammadzeesha1670@gmail.com", "+92 336 2322 679");
-        ta.registerUser("MUhammad", "Ert", "muhammadzeesha1670@gmail.com", "+92 336 2322 679");
+        User mz = ta.registerUser("MUhammad", "Zeeshan", "muhammadzeesha1670@gmail.com", "+92 336 2322 679");
+        User zm = ta.registerUser("Zeeshan", "Muhammad", "muhammadzeesha1670@gmail.com", "+92 336 2322 679");
+     
         
         ta.users().forEach(user -> System.out.println(user));
         
+        Order order = new Order(mz,  10, 12);
+        
+        System.out.println(order);
+        
+        order.setPaymentMethod(PaymentMethod.CARD);
+        order.setStatus(OrderStatus.DELIVERED);
+        System.out.println(order);
 	}
 
 	
