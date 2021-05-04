@@ -1,9 +1,6 @@
 package diet;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -78,7 +75,17 @@ public class Takeaway {
 	 * @return newly created order
 	 */
 	public Order createOrder(User user, String restaurantName, int h, int m) {
-		return null;
+		int i = 0;
+		Order order;
+		while (true){
+			Restaurant r = restaurants.get(i);
+			if(r.getName().equals(restaurantName)) {
+				order = r.addOrderForRestaurant(user, h, m);
+				break;
+			}
+			++i;
+		}
+		return order;
 	}
 	
 	/**

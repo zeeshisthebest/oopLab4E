@@ -40,16 +40,25 @@ public class TestApp {
         
         ta.users().forEach(user -> System.out.println(user));
         
-        Order order = new Order(mz, "r2", 10, 02);
         
-        System.out.println(order);
+        String time1 = compareTime("09:00", "12:00", "17:00", "20:00",  "10:00");
+        String time2 = compareTime("09:00", "12:00", "17:00", "20:00",  "19:00");
+        String time3 = compareTime("09:00", "12:00", "17:00", "20:00",  "08:00");
+        String time4 = compareTime("09:00", "12:00", "17:00", "20:00",  "15:00");
+        String time5 = compareTime("09:00", "12:00", "17:00", "20:00",  "23:00");
         
-        order.setPaymentMethod(PaymentMethod.CARD);
-        order.setStatus(OrderStatus.DELIVERED);
-        order.addMenus("menu1", 1);
-        order.addMenus("menu2", 3);
-        System.out.println(order);
+        System.out.println(time1 + " " + time2 + " " + time3 + " " + time4 + " " + time5);
 	}
 
+	public static String compareTime(String oh1, String ch1, String oh2, String ch2, String ct) {
+		System.out.println(oh1.compareTo(ct) + " " + ch2.compareTo(ct));
+		if (ch2.compareTo(ct) <= 0 && oh1.compareTo(ct) > 0) {
+			return oh1;
+		} else if (ch1.compareTo(ct) <= 0 && oh2.compareTo(ct) > 0) {
+			return oh2;
+		}
+		
+		return ct;
+	}
 	
 }

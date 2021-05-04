@@ -1,6 +1,5 @@
 package diet;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -9,7 +8,7 @@ import java.util.TreeMap;
  */
 public class Order {
 	private User user;
-	private String restaurant;
+	private String restaurantName;
 	private int h;
 	private int m;
 	private OrderStatus orderStatus;
@@ -24,11 +23,11 @@ public class Order {
 	 * @param m minute
 	 * @return none
 	 */
-	public Order(User user, String r, int h, int m) {
+	public Order(User user, String restaurantName, int h, int m) {
 		this.user = user;
 		this.h = h;
 		this.m = m;
-		this.restaurant = r;
+		this.restaurantName = restaurantName;
 	}
  
 	/**
@@ -114,13 +113,14 @@ public class Order {
 	@Override
 	public String toString() {
 		String str = "";
-		str += "\"" + restaurant + ", " + user + " : Delivery(" + String.format("%02d:%02d):", h, m); 
+		str += "\"" + restaurantName + ", " + user + " : Delivery(" + String.format("%02d:%02d):", h, m); 
 		
 		for(Map.Entry<String, Integer> m: menus.entrySet()) {
 				str += "\n\t" + m.getKey() + "->" + m.getValue();
 		}
 		
 		str +="\n\"";
+		System.out.println(str);
 		return str;
 	}
 	

@@ -1,7 +1,6 @@
 package diet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,6 +14,7 @@ public class Restaurant {
 	private String name;
 	private Food food;
 	private List<String> timings = new ArrayList<>();
+	private List<Order> orders = new ArrayList<>();
 	private Map<String, Menu> menus = new TreeMap<>();
 	
 	/**
@@ -37,10 +37,9 @@ public class Restaurant {
 	}
 	
 	public void setHours(String ... hm) {
-		timings.add(hm[0]);
-		timings.add(hm[1]);
-		timings.add(hm[2]);
-		timings.add(hm[3]);
+		for(String str: hm) {
+			timings.add(str);
+		}
 	}
 	
 	public Menu getMenu(String name) {
@@ -55,7 +54,7 @@ public class Restaurant {
 	 * @return the newly created menu
 	 */
 	public Menu createMenu(String name) {
-		Menu m = food.getMenu(name);
+		Menu m = food.createMenu(name);
 		menus.put(name, m);
 		return m;
 	}
@@ -81,6 +80,17 @@ public class Restaurant {
 	 */
 	public String ordersWithStatus(OrderStatus status) {
 		return null;
+	}
+	
+	/**
+	 * @param user 	user object
+	 * @param h		hours
+	 * @param m		minutes
+	 */
+	public Order addOrderForRestaurant(User user, int h, int m) {
+		Order o = new Order(user, this.name, h, m);
+		orders.add(o);
+		return o;
 	}
 	
 	public String toString() {
